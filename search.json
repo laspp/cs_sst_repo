@@ -1,0 +1,100 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "HPC Systems Simulation Workbook",
+    "section": "",
+    "text": "Preface\nThis workbook accompanies the laboratory exercises on High-Performance Computing (HPC) systems at the Faculty of Computer and Information Science, University of Ljubljana.\nThe exercises use the Structural Simulation Toolkit (SST), a parallel, discrete-event simulation framework developed at Sandia National Laboratories. With SST you build a model of an HPC system from components (processors, caches, memories, network-on-chip and interconnects), wire them together in a Python configuration file and study how design choices affect performance.\nNote to Students: These notes are intended solely for educational purposes. They are not a replacement for attending lectures, laboratory sessions, or consulting textbooks, but a complementary resource to support your learning. The material is a work in progress; if something does not work out of the box, report it to your teaching assistant or open an issue.\nAcknowledgments:\n\nThe material is based on the official SST documentation and the examples distributed with SST-Core and SST-Elements. Many thanks to the SST developers for making them publicly available.\n\nLicense: © Ratko Pilipović, University of Ljubljana, Faculty of Computer and Information Science. Published under the Attribution-NonCommercial-ShareAlike 4.0 International license.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "chapters/01-sst-intro.html",
+    "href": "chapters/01-sst-intro.html",
+    "title": "1  Introduction to SST",
+    "section": "",
+    "text": "1.1 Goals\nAfter this exercise you will be able to:",
+    "crumbs": [
+      "Laboratory Exercises",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to SST</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-sst-intro.html#goals",
+    "href": "chapters/01-sst-intro.html#goals",
+    "title": "1  Introduction to SST",
+    "section": "",
+    "text": "describe the basic building blocks of an SST simulation (components, links, ports, events, clocks),\nrun SST with a Python configuration file,\nread the statistics SST produces.",
+    "crumbs": [
+      "Laboratory Exercises",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to SST</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-sst-intro.html#background",
+    "href": "chapters/01-sst-intro.html#background",
+    "title": "1  Introduction to SST",
+    "section": "1.2 Background",
+    "text": "1.2 Background\nSST is a discrete-event simulator. A simulated system is a graph of components (e.g. a core, a cache, a memory controller) connected by links between their ports. Components exchange events over links; every link has a latency. The structure of the system and the component parameters are described in a Python file, which the sst executable loads and runs.\n +-------------+   link (latency)   +-------------+\n | component 0 | port ------- port  | component 1 |\n +-------------+                    +-------------+",
+    "crumbs": [
+      "Laboratory Exercises",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to SST</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-sst-intro.html#environment",
+    "href": "chapters/01-sst-intro.html#environment",
+    "title": "1  Introduction to SST",
+    "section": "1.3 Environment",
+    "text": "1.3 Environment\nCheck that SST is available and see which element libraries are installed:\nsst --version\nsst-info | head",
+    "crumbs": [
+      "Laboratory Exercises",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to SST</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-sst-intro.html#a-first-simulation",
+    "href": "chapters/01-sst-intro.html#a-first-simulation",
+    "title": "1  Introduction to SST",
+    "section": "1.4 A first simulation",
+    "text": "1.4 A first simulation\nThe file hello_sst.py connects two instances of the simpleElementExample.example0 component, which send each other a fixed number of events.\n# Minimal SST configuration: two components exchanging events over one link.\n# Uses simpleElementExample.example0 from SST-Elements.\nimport sst\n\ncomp_a = sst.Component(\"c0\", \"simpleElementExample.example0\")\ncomp_a.addParams({\n    \"eventsToSend\": 50,\n    \"eventSize\": 32,\n})\n\ncomp_b = sst.Component(\"c1\", \"simpleElementExample.example0\")\ncomp_b.addParams({\n    \"eventsToSend\": 50,\n    \"eventSize\": 32,\n})\n\nlink = sst.Link(\"link_c0_c1\")\nlink.connect((comp_a, \"port\", \"1ns\"), (comp_b, \"port\", \"1ns\"))\nRun it:\nsst hello_sst.py",
+    "crumbs": [
+      "Laboratory Exercises",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to SST</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-sst-intro.html#tasks",
+    "href": "chapters/01-sst-intro.html#tasks",
+    "title": "1  Introduction to SST",
+    "section": "1.5 Tasks",
+    "text": "1.5 Tasks\n\nRun the simulation and note the simulated time SST reports.\nChange the link latency and the number of events. How does the simulated time change?\nEnable statistics for both components and inspect the output file.",
+    "crumbs": [
+      "Laboratory Exercises",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to SST</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-sst-intro.html#literature",
+    "href": "chapters/01-sst-intro.html#literature",
+    "title": "1  Introduction to SST",
+    "section": "1.6 Literature",
+    "text": "1.6 Literature\n\nSST documentation\nSST Getting Started",
+    "crumbs": [
+      "Laboratory Exercises",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to SST</span>"
+    ]
+  },
+  {
+    "objectID": "chapters/01-sst-intro.html#starter-files",
+    "href": "chapters/01-sst-intro.html#starter-files",
+    "title": "1  Introduction to SST",
+    "section": "1.7 Starter files",
+    "text": "1.7 Starter files\nTo download all files of this exercise at once, run in a terminal (also works on the cluster):\nwget https://laspp.github.io/cs_sst_repo/code/01_sst_intro.tar.gz\ntar xzf 01_sst_intro.tar.gz\ncd 01_sst_intro\nOr open the individual files:\n\nhello_sst.py\nrun_slurm.sh",
+    "crumbs": [
+      "Laboratory Exercises",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to SST</span>"
+    ]
+  }
+]
