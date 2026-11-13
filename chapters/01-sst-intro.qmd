@@ -1,0 +1,73 @@
+# Introduction to SST {#sec-sst-intro}
+
+::: {.callout-note}
+## Draft
+This chapter is a template placeholder. Content will be written together with the exercise.
+:::
+
+## Goals
+
+After this exercise you will be able to:
+
+- describe the basic building blocks of an SST simulation (components, links, ports, events, clocks),
+- run SST with a Python configuration file,
+- read the statistics SST produces.
+
+## Background
+
+SST is a discrete-event simulator. A simulated system is a graph of **components** (e.g. a core, a cache, a memory controller) connected by **links** between their **ports**. Components exchange **events** over links; every link has a latency. The structure of the system and the component parameters are described in a Python file, which the `sst` executable loads and runs.
+
+```
+ +-------------+   link (latency)   +-------------+
+ | component 0 | port ------- port  | component 1 |
+ +-------------+                    +-------------+
+```
+
+## Environment
+
+Check that SST is available and see which element libraries are installed:
+
+```bash
+sst --version
+sst-info | head
+```
+
+## A first simulation
+
+The file `hello_sst.py` connects two instances of the `simpleElementExample.example0` component, which send each other a fixed number of events.
+
+```python
+{{< include ../code/01_sst_intro/hello_sst.py >}}
+```
+
+Run it:
+
+```bash
+sst hello_sst.py
+```
+
+## Tasks
+
+1. Run the simulation and note the simulated time SST reports.
+2. Change the link latency and the number of events. How does the simulated time change?
+3. Enable statistics for both components and inspect the output file.
+
+## Literature
+
+- [SST documentation](https://sst-simulator.org/sst-docs/)
+- [SST Getting Started](https://sst-simulator.org/sst-docs/docs/guides/start)
+
+## Starter files
+
+To download all files of this exercise at once, run in a terminal (also works on the cluster):
+
+```
+wget https://laspp.github.io/cs_sst_repo/code/01_sst_intro.tar.gz
+tar xzf 01_sst_intro.tar.gz
+cd 01_sst_intro
+```
+
+Or open the individual files:
+
+- [hello_sst.py](../code/01_sst_intro/hello_sst.py)
+- [run_slurm.sh](../code/01_sst_intro/run_slurm.sh)

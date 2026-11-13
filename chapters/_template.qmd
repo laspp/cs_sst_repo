@@ -1,0 +1,30 @@
+# Exercise title {#sec-NN-slug}
+
+<!-- Copy to chapters/NN-slug.qmd, add it to book.chapters in _quarto.yml.
+     Code goes to code/NN_slug/, images to img/NN/. Files starting with "_" are not rendered. -->
+
+## Goals
+
+- ...
+
+## Background
+
+...
+
+## Tasks
+
+1. ...
+
+## Literature
+
+- [SST documentation](https://sst-simulator.org/sst-docs/)
+
+## Starter files
+
+```
+wget https://laspp.github.io/cs_sst_repo/code/NN_slug.tar.gz
+tar xzf NN_slug.tar.gz
+cd NN_slug
+```
+
+- [file.py](../code/NN_slug/file.py)

@@ -1,0 +1,30 @@
+project:
+  type: book
+  output-dir: _book
+  post-render: scripts/make-archives.sh
+
+book:
+  title: "HPC Systems Simulation Workbook"
+  subtitle: "Laboratory exercises with the Structural Simulation Toolkit (SST)"
+  # TODO: set to the real GitHub Pages URL once the remote exists, then
+  # sed the same URL in chapters/*.qmd (Starter files sections).
+  site-url: https://laspp.github.io/cs_sst_repo/
+  author: "Ratko Pilipović"
+  date: today
+  chapters:
+    - index.qmd
+    - part: "Laboratory Exercises"
+      chapters:
+        - chapters/01-sst-intro.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-copy: true
+  pdf:
+    documentclass: scrbook
+    pdf-engine: tectonic
+    filters:
+      - pdf-unicode.lua
+    include-in-header: pdf-header.tex

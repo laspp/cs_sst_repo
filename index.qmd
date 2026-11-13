@@ -1,0 +1,13 @@
+# Preface {.unnumbered}
+
+This workbook accompanies the laboratory exercises on **High-Performance Computing (HPC) systems** at the Faculty of Computer and Information Science, University of Ljubljana.
+
+The exercises use the [Structural Simulation Toolkit (SST)](https://sst-simulator.org/), a parallel, discrete-event simulation framework developed at Sandia National Laboratories. With SST you build a model of an HPC system from components (processors, caches, memories, network-on-chip and interconnects), wire them together in a Python configuration file and study how design choices affect performance.
+
+**Note to Students**: These notes are intended solely for educational purposes. They are not a replacement for attending lectures, laboratory sessions, or consulting textbooks, but a complementary resource to support your learning. The material is a work in progress; if something does not work out of the box, report it to your teaching assistant or open an issue.
+
+**Acknowledgments**:
+
+- The material is based on the official [SST documentation](https://sst-simulator.org/sst-docs/) and the examples distributed with SST-Core and SST-Elements. Many thanks to the SST developers for making them publicly available.
+
+**License**: © Ratko Pilipović, University of Ljubljana, Faculty of Computer and Information Science. Published under the [Attribution-NonCommercial-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-nc-sa/4.0/) license.
